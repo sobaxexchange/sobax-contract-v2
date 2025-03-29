@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.6.0;
+
+import "../interfaces/IPositionRouterCallbackReceiver.sol";
+
+contract PositionRouterCallbackReceiverTest is IPositionRouterCallbackReceiver {
+    string private versionIdentifier = "ZM.0.0.4";
+    event CallbackCalled(
+        bytes32 positionKey,
+        bool isExecuted,
+        bool isIncrease
+    );
+
+    function sbxPositionCallback(bytes32 positionKey, bool isExecuted, bool isIncrease) override external {
+        emit CallbackCalled(positionKey, isExecuted, isIncrease);
+    }
+}
